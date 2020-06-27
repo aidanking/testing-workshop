@@ -36,8 +36,33 @@
 /*
 http://ws.kcd.im/?ws=Testing&e=basic%20react%20test&em=
 */
-test.skip('I submitted my elaboration and feedback', () => {
-  const submitted = false // change this when you've submitted!
+
+import React from 'react'
+import ReactDOM from 'react-dom'
+import ItemList from '../item-list'
+
+test('renders empty list', () => {
+  const container = document.createElement('div')
+  const items = []
+
+  ReactDOM.render(<ItemList items={items} />, container)
+
+  expect(container.textContent).toMatch('no items')
+})
+
+test('renders items in list', () => {
+  const container = document.createElement('div')
+  const items = ['apple', 'orange', 'pear']
+
+  ReactDOM.render(<ItemList items={items} />, container)
+
+  expect(container.textContent).toMatch('apple')
+  expect(container.textContent).toMatch('orange')
+  expect(container.textContent).toMatch('pear')
+})
+
+test('I submitted my elaboration and feedback', () => {
+  const submitted = true // change this when you've submitted!
   expect(submitted).toBe(true)
 })
 ////////////////////////////////
