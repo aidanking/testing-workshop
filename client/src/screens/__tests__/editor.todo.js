@@ -12,7 +12,7 @@ jest.mock('../../utils/api', () => {
 })
 
 const flushPromies = () => {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(resolve, 0)
   })
 }
