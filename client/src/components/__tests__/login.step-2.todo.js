@@ -49,7 +49,7 @@ test('calls onSubmit with the username and password when submitted', () => {
 /*
 http://ws.kcd.im/?ws=Testing&e=login.step-2%20(react-testing-library)&em=
 */
-test.skip('I submitted my elaboration and feedback', () => {
+test('I submitted my elaboration and feedback', () => {
   const submitted = true // change this when you've submitted!
   expect(submitted).toBe(true)
 })
