@@ -6,9 +6,27 @@
 import {generate} from '../utils'
 
 describe('authentication', () => {
-  beforeEach(() => cy.logout())
+  let user
+  beforeEach(() => {
+    return cy
+      .logout()
+      .createNewUser()
+      .then((u) => (user = u))
+      .visit('/')
+  })
 
   it('should allow existing users to login', () => {
+    cy.getByText('Login')
+      .click()
+      .getByLabelText('Username')
+      .type(user.username)
+      .getByLabelText('Password')
+      .type(user.password)
+      .getByText('Submit')
+      .click()
+      .assertRoute('/')
+
+    cy.getByTestId('username-display').should('contain', user.username)
     // you'll want to first create a new user.
     // This custom cypress command is similar to a promise, so you can do:
     // cy.createNewUser().then(user => {
@@ -36,7 +54,7 @@ describe('authentication', () => {
   http://ws.kcd.im/?ws=Testing&e=e2e%20register&em=
   */
   it.skip('I submitted my elaboration and feedback', () => {
-    const submitted = false // change this when you've submitted!
+    const submitted = true // change this when you've submitted!
     expect(submitted).toBe(true)
   })
   ////////////////////////////////
